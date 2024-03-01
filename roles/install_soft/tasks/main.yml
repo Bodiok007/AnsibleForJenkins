@@ -1,0 +1,7 @@
+---
+
+- name: Update system
+  include_tasks: update-system.yml
+
+- name: Install soft
+  include_tasks: install-soft.yml

@@ -1,0 +1,7 @@
+---
+
+- name: Setup playbook
+  hosts: app
+  become: true
+  roles:
+    - install_soft

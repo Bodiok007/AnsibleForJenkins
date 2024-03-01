@@ -1,0 +1,19 @@
+---
+
+- name: Install soft
+  ansible.builtin.apt:
+    state: present
+    name:
+      - curl
+      - wget
+      - mc
+      - screen
+      - tree
+      - nodejs
+      - npm
+
+- name: Install pm2
+  npm:
+    name: 'pm2'
+    global: yes
+    state: present
