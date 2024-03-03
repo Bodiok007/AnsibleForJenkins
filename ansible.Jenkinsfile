@@ -25,7 +25,7 @@ pipeline {
                 script {
 
                     withCredentials([sshUserPrivateKey(credentialsId: 'devops-ssh-key', keyFileVariable: 'SSH_KEY', usernameVariable: 'USER')]) {
-                        def instanceIp = getPublicIpAddress2('app-instance')
+                        def instanceIp = getPublicIpAddress('app-instance')
                         echo "Instance IP: ${instanceIp}"
                         
                         def inventoryContent = "[app]\n${instanceIp} ansible_ssh_extra_args='-o StrictHostKeyChecking=no' ansible_ssh_user='${USER}' ansible_ssh_private_key_file='${SSH_KEY}'"
@@ -45,7 +45,7 @@ pipeline {
     }
 }
 
-def getPublicIpAddress2(tag) {
+def getPublicIpAddress(tag) {
     def instanceIp = sh(script: """
         aws ec2 describe-instances \
         --region ${AWS_DEFAULT_REGION} \
